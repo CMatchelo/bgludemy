@@ -3,7 +3,7 @@ import clsx from 'clsx';
 type SpinLoaderProps = {
   className?: string;
 };
-export function SpinLoader({ className = '' }: SpinLoaderProps) {
+export default function SpinLoader({ className = '' }: SpinLoaderProps) {
   return (
     <div className={clsx('flex', 'items-center', 'justify-center', className)}>
       <div
