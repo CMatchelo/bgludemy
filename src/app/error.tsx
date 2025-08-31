@@ -8,23 +8,16 @@ type RootErrorPageProps = {
   reset: () => void;
 };
 
-export default function RootErrorPage({ error, reset }: RootErrorPageProps) {
+export default function RootErrorPage({ error }: RootErrorPageProps) {
   useEffect(() => {
-    console.error(error);
+    console.log(error);
   }, [error]);
 
   return (
-    <>
-      <ErrorMessage
-        pageTitle='Slug nao encontrada'
-        contentTitle='501'
-        content={
-          <button onClick={reset}>
-            Ocorreu um erro ao carregar a postagem. Por favor, tente novamente
-            mais tarde.
-          </button>
-        }
-      />
-    </>
+    <ErrorMessage
+      pageTitle='Internal Server Error'
+      contentTitle='501'
+      content='Ocorreu um erro do qual nossa aplicação não conseguiu ser recuperar. Tente novamente mais tarde.'
+    />
   );
 }

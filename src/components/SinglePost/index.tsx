@@ -1,6 +1,6 @@
 import { findPostBySlugCached } from '@/lib/post/queries';
 import Image from 'next/image';
-import PostHeading from '../PostHeading';
+import { PostHeading } from '../PostHeading';
 import { PostDate } from '../PostDate';
 import { SafeMarkdown } from '../SafeMarkdown';
 
@@ -13,7 +13,7 @@ export async function SinglePost({ slug }: SinglePostProps) {
 
   return (
     <article className='mb-16'>
-      <header className='group flex flex-col gap-8 mb-8'>
+      <header className='group flex flex-col gap-4 mb-4'>
         <Image
           className='rounded-xl'
           src={post.coverImageUrl}
@@ -21,6 +21,7 @@ export async function SinglePost({ slug }: SinglePostProps) {
           height={720}
           alt={post.title}
         />
+
         <PostHeading url={`/post/${post.slug}`}>{post.title}</PostHeading>
 
         <p>
@@ -28,7 +29,7 @@ export async function SinglePost({ slug }: SinglePostProps) {
         </p>
       </header>
 
-      <p className='mb-6 text-xl text-slate-600 italic'>{post.excerpt}</p>
+      <p className='text-xl mb-4 text-slate-600'>{post.excerpt}</p>
 
       <SafeMarkdown markdown={post.content} />
     </article>

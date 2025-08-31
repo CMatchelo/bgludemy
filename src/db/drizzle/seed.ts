@@ -1,15 +1,23 @@
 import { JsonPostRepository } from '@/repositories/post/json-post-repository';
-import { postsTable } from './schemas';
 import { drizzleDb } from '.';
+import { postsTable } from './schemas';
 
 (async () => {
   const jsonPostRepository = new JsonPostRepository();
   const posts = await jsonPostRepository.findAll();
 
   try {
-    await drizzleDb.delete(postsTable); // DELETE ALL EXISTING RECORDS, CAREFUL WITH THIS IN PRODUCTION
+    //await drizzleDb.delete(postsTable); // ISSO LIMPA A BASE DE DADOS
     await drizzleDb.insert(postsTable).values(posts);
-  } catch (err) {
-    console.error('Error seeding database:', err);
+
+    console.log();
+    console.log(`${posts.length} posts foram salvos na base de dados.`);
+    console.log();
+  } catch (e) {
+    console.log();
+    console.log('Ocorreu um erro...');
+    console.log();
+    console.log(e);
+    console.log();
   }
 })();
